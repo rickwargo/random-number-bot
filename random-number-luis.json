@@ -1,0 +1,227 @@
+{
+  "luis_schema_version": "2.0.0",
+  "versionId": "0.1",
+  "name": "random-number",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "None"
+    },
+    {
+      "name": "RandomNumber"
+    },
+    {
+      "name": "RangeQuery"
+    },
+    {
+      "name": "SetRange"
+    }
+  ],
+  "entities": [
+    {
+      "name": "boundary"
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "bing_entities": [
+    "number"
+  ],
+  "actions": [],
+  "model_features": [
+    {
+      "name": "lower",
+      "mode": true,
+      "words": "lower,bottom,min,minimum,smallest",
+      "activated": true
+    },
+    {
+      "name": "upper",
+      "mode": true,
+      "words": "upper,top,max,maximum,largest,biggest",
+      "activated": true
+    }
+  ],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "bottom limit is 1",
+      "intent": "SetRange",
+      "entities": [
+        {
+          "entity": "boundary",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "lower limit is 0",
+      "intent": "SetRange",
+      "entities": [
+        {
+          "entity": "boundary",
+          "startPos": 0,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "upper limit is 100",
+      "intent": "SetRange",
+      "entities": [
+        {
+          "entity": "boundary",
+          "startPos": 0,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "top limit is 10",
+      "intent": "SetRange",
+      "entities": [
+        {
+          "entity": "boundary",
+          "startPos": 0,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "set upper limit to 10000",
+      "intent": "SetRange",
+      "entities": [
+        {
+          "entity": "boundary",
+          "startPos": 4,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "set range from 1 to 100",
+      "intent": "SetRange",
+      "entities": []
+    },
+    {
+      "text": "range is between 1 and 100",
+      "intent": "SetRange",
+      "entities": []
+    },
+    {
+      "text": "set range between 1 and 100",
+      "intent": "SetRange",
+      "entities": []
+    },
+    {
+      "text": "again",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "another",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "give me a random number",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "another number",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "give be a number between 0 and 100",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "another random number",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "more",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "between 1 and 500",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "number between 0 and 50",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "random",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "number",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "roll",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "roll the die",
+      "intent": "RandomNumber",
+      "entities": []
+    },
+    {
+      "text": "tell me the lower limit",
+      "intent": "RangeQuery",
+      "entities": [
+        {
+          "entity": "boundary",
+          "startPos": 12,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "what is the lower limit",
+      "intent": "RangeQuery",
+      "entities": [
+        {
+          "entity": "boundary",
+          "startPos": 12,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "what is the upper limit",
+      "intent": "RangeQuery",
+      "entities": [
+        {
+          "entity": "boundary",
+          "startPos": 12,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "what is the range",
+      "intent": "RangeQuery",
+      "entities": []
+    },
+    {
+      "text": "what are the limits",
+      "intent": "RangeQuery",
+      "entities": []
+    }
+  ]
+}
