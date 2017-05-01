@@ -32,7 +32,7 @@ intents
         session.userData.lowerLimit = 1;
         session.userData.upperLimit = 100;
         session.send('I can give you a random number between %d and %d.', session.userData.lowerLimit, session.userData.upperLimit);
-        next();
+        //next();
     });
 
 intents.matches('RandomNumber', [
