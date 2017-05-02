@@ -111,15 +111,21 @@ function setLimitRange(session, lower, upper) {
 function setLimits(session, ranges, boundary) {
     if (ranges) {
         if (ranges.length === 1 && boundary) {
-            var limit = builder.EntityRecognizer.parseNumber(ranges[0].entity);
+            var wordLower = ranges[0].entity;
+            wordLower = (wordLower === 'one') ? '1' : (wordLower === 'zero' ? '0' : wordLower);
+            var limit = builder.EntityRecognizer.parseNumber(wordLower);
             if (boundary === 'lower') {
                 setLimitRange(session, limit, session.userData.upperLimit);
             } else if (boundary === 'upper') {
                 setLimitRange(session, session.userData.lowerLimit, limit);
             }
         } else if (ranges.length === 2) {
-            var lower = builder.EntityRecognizer.parseNumber(ranges[0].entity);
-            var upper = builder.EntityRecognizer.parseNumber(ranges[1].entity);
+            var wordLower = ranges[0].entity;
+            wordLower = (wordLower === 'one') ? '1' : (wordLower === 'zero' ? '0' : wordLower);
+            var wordUpper = ranges[1].entity;
+            wordUpper = (wordUpper === 'one') ? '1' : (wordUpper === 'zero' ? '0' : wordUpper);
+            var lower = builder.EntityRecognizer.parseNumber(wordLower);
+            var upper = builder.EntityRecognizer.parseNumber(wordUpper);
             setLimitRange(session, lower, upper);
         } else {
             setLimitRange(session, null, null);
