@@ -93,10 +93,6 @@ function setLimitRange(session, lower, upper) {
         var msg = 'The lower limit of ' + lower.toString() + ' cannot be greater than the upper limit of ' + session.userData.upperLimit.toString() + '.';
         // session.send(msg);
         session.say(msg, msg);
-    } else if (upper < lower) {
-        let msg = 'The upper limit of ' + upper.toString() + ' cannot be greater than the lower limit of ' + session.userData.lowerLimit.toString() + '.';
-        // session.send(msg);
-        session.say(msg, msg);
     } else {
         session.userData.lowerLimit = lower;
         session.userData.upperLimit = upper;
