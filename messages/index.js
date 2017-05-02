@@ -98,13 +98,14 @@ function setLimitRange(session, lower, upper) {
         session.say(msg, msg);
     } else if (upper < lower) {
         let msg = 'The upper limit of ' + upper.toString() + ' cannot be greater than the lower limit of ' + session.userData.lowerLimit.toString() + '.';
-
+        // session.send(msg);
+        session.say(msg, msg);
     } else {
         session.userData.lowerLimit = lower;
         session.userData.upperLimit = upper;
         var msg = 'The range is now between ' + lower.toString() + ' and ' + upper.toString() + '.';
         // session.send(msg);
-        session.say(msg, msg);
+        session.say(msg, null);
     }
 }
 
