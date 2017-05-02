@@ -89,9 +89,6 @@ function setLimitRange(session, lower, upper) {
         session.say(msg, msg);
         return;
     }
-    if (upper < lower) {
-        upper = [lower, lower = upper][0];
-    }
     if (lower > upper) {
         var msg = 'The lower limit of ' + lower.toString() + ' cannot be greater than the upper limit of ' + session.userData.upperLimit.toString() + '.';
         // session.send(msg);
@@ -113,7 +110,7 @@ function setLimits(session, ranges, boundary) {
     if (ranges) {
         if (ranges.length === 1 && boundary) {
             var wordLower = ranges[0].entity;
-            wordLower = (wordLower === 'one') ? '1' : (wordLower === 'zero' ? '0' : wordLower);
+            wordLower = ((wordLower === 'one') ? '1' : (wordLower === 'zero' ? '0' : wordLower)).replace(/,/g, '');
             var limit = builder.EntityRecognizer.parseNumber(wordLower);
             if (boundary === 'lower') {
                 setLimitRange(session, limit, session.userData.upperLimit);
@@ -122,11 +119,14 @@ function setLimits(session, ranges, boundary) {
             }
         } else if (ranges.length === 2) {
             var wordLower = ranges[0].entity;
-            wordLower = (wordLower === 'one') ? '1' : (wordLower === 'zero' ? '0' : wordLower);
+            wordLower = ((wordLower === 'one') ? '1' : (wordLower === 'zero' ? '0' : wordLower)).replace(/,/g, '');
             var wordUpper = ranges[1].entity;
-            wordUpper = (wordUpper === 'one') ? '1' : (wordUpper === 'zero' ? '0' : wordUpper);
+            wordUpper = ((wordUpper === 'one') ? '1' : (wordUpper === 'zero' ? '0' : wordUpper)).replace(/,/g, '');
             var lower = builder.EntityRecognizer.parseNumber(wordLower);
             var upper = builder.EntityRecognizer.parseNumber(wordUpper);
+            if (upper < lower) {
+                upper = [lower, lower = upper][0];
+            }
             setLimitRange(session, lower, upper);
         } else {
             setLimitRange(session, null, null);
