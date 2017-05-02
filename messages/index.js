@@ -83,7 +83,7 @@ intents.matches('RangeQuery', [
 ]);
 
 function setLimitRange(session, lower, upper) {
-    if (lower === null || upper === null || lower === NaN || upper === NaN) {
+    if (lower === null || upper === null || isNan(lower) || isNan(upper)) {
         var msg = 'That was not a valid range limit.';
         // session.send(msg);
         session.say(msg, msg);
