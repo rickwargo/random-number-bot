@@ -31,7 +31,9 @@ intents
     .onBegin(function (session, args, next) {
         session.userData.lowerLimit = 1;
         session.userData.upperLimit = 100;
-        session.send('I can give you a random number between %d and %d.', session.userData.lowerLimit, session.userData.upperLimit);
+        let msg = 'I can give you a random number between ${session.userData.lowerLimit} and ${session.userData.upperLimit}.'
+        session.send(msg);
+        session.say(msg, msg);
         //next();
     });
 
@@ -47,7 +49,9 @@ intents.matches('RandomNumber', [
         next();
     },
     function (session, results) {
-        session.send(session.userData.randomNumber.toString());
+        let msg = session.userData.randomNumber.toString()
+        session.send(msg);
+        session.say(msg, msg);
     }
 ]);
 
@@ -56,11 +60,17 @@ intents.matches('RangeQuery', [
         var boundary = builder.EntityRecognizer.findEntity(args.entities, 'boundary');
         if (boundary) {
             if (boundary.entity == 'lower') {
-                session.send('The lower limit is ' + session.userData.lowerLimit.toString());
+                let msg = 'The lower limit is ' + session.userData.lowerLimit.toString();
+                session.send(msg);
+                session.say(msg, msg);
             } else if (boundary.entity == 'upper') {
-                session.send('The upper limit is ' + session.userData.upperLimit.toString());
+                let msg = 'The upper limit is ' + session.userData.upperLimit.toString();
+                session.send(msg);
+                session.say(msg, msg);
             } else {
-                session.send('I don\'t know what the boundary "' + boundary + '" is.');
+                let msg = 'I don\'t know what the boundary "' + boundary + '" is.';
+                session.send(msg);
+                session.say(msg, msg);
             }
         } else {
             session.send('The range is between %d and %d.', session.userData.lowerLimit, session.userData.upperLimit);
@@ -70,20 +80,27 @@ intents.matches('RangeQuery', [
 
 function setLimitRange(session, lower, upper) {
     if (lower === null || upper === null || lower === NaN || upper === NaN) {
-        session.send('That was not a valid range limit.');
+        let msg = 'That was not a valid range limit.';
+        session.send(msg);
+        session.say(msg, msg);
         return;
     }
     if (upper < lower) {
         upper = [lower, lower = upper][0];
     }
     if (lower > upper) {
-        session.send('The lower limit of ' + lower.toString() + ' cannot be greater than the upper limit of ' + session.userData.upperLimit.toString() + '.');
+        let msg = 'The lower limit of ' + lower.toString() + ' cannot be greater than the upper limit of ' + session.userData.upperLimit.toString() + '.';
+        session.send(msg);
+        session.say(msg, msg);
     } else if (upper < lower) {
-        session.send('The upper limit of ' + upper.toString() + ' cannot be greater than the lower limit of ' + session.userData.lowerLimit.toString() + '.');
+        let msg = 'The upper limit of ' + upper.toString() + ' cannot be greater than the lower limit of ' + session.userData.lowerLimit.toString() + '.';
+
     } else {
         session.userData.lowerLimit = lower;
         session.userData.upperLimit = upper;
-        session.send('The range is now between ' + lower.toString() + ' and ' + upper.toString() + '.');
+        let msg = 'The range is now between ' + lower.toString() + ' and ' + upper.toString() + '.';
+        session.send(msg);
+        session.say(msg, msg);
     }
 }
 
