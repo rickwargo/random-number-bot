@@ -26,13 +26,15 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 
 intents
     .onDefault(function(session) {
-        session.send('Sorry, I did not understand \'%s\'.', session.message.text);
+        var msg = 'Sorry, I did not understand \'' + session.message.text + '\'.';
+        // session.send(msg);
+        session.say(msg, msg);
     })
     .onBegin(function (session, args, next) {
         session.userData.lowerLimit = 1;
         session.userData.upperLimit = 100;
-        let msg = 'I can give you a random number between ${session.userData.lowerLimit} and ${session.userData.upperLimit}.'
-        session.send(msg);
+        var msg = 'I can give you a random number between ' + session.userData.lowerLimit.toString() + ' and ' + session.userData.upperLimit.toString()+ '.';
+        // session.send(msg);
         session.say(msg, msg);
         //next();
     });
@@ -49,8 +51,8 @@ intents.matches('RandomNumber', [
         next();
     },
     function (session, results) {
-        let msg = session.userData.randomNumber.toString()
-        session.send(msg);
+        var msg = session.userData.randomNumber.toString();
+        // session.send(msg);
         session.say(msg, msg);
     }
 ]);
@@ -60,28 +62,30 @@ intents.matches('RangeQuery', [
         var boundary = builder.EntityRecognizer.findEntity(args.entities, 'boundary');
         if (boundary) {
             if (boundary.entity == 'lower') {
-                let msg = 'The lower limit is ' + session.userData.lowerLimit.toString();
-                session.send(msg);
+                var msg = 'The lower limit is ' + session.userData.lowerLimit.toString();
+                // session.send(msg);
                 session.say(msg, msg);
             } else if (boundary.entity == 'upper') {
-                let msg = 'The upper limit is ' + session.userData.upperLimit.toString();
-                session.send(msg);
+                var msg = 'The upper limit is ' + session.userData.upperLimit.toString();
+                // session.send(msg);
                 session.say(msg, msg);
             } else {
-                let msg = 'I don\'t know what the boundary "' + boundary + '" is.';
-                session.send(msg);
+                var msg = 'I don\'t know what the boundary "' + boundary + '" is.';
+                // session.send(msg);
                 session.say(msg, msg);
             }
         } else {
-            session.send('The range is between %d and %d.', session.userData.lowerLimit, session.userData.upperLimit);
+            var msg = 'The range is between ' + session.userData.lowerLimit.toString() + ' and ' + session.userData.upperLimit.toString()+ '.';
+            // session.send(msg);
+            session.say(msg, msg);
         }
     }
 ]);
 
 function setLimitRange(session, lower, upper) {
     if (lower === null || upper === null || lower === NaN || upper === NaN) {
-        let msg = 'That was not a valid range limit.';
-        session.send(msg);
+        var msg = 'That was not a valid range limit.';
+        // session.send(msg);
         session.say(msg, msg);
         return;
     }
@@ -89,8 +93,8 @@ function setLimitRange(session, lower, upper) {
         upper = [lower, lower = upper][0];
     }
     if (lower > upper) {
-        let msg = 'The lower limit of ' + lower.toString() + ' cannot be greater than the upper limit of ' + session.userData.upperLimit.toString() + '.';
-        session.send(msg);
+        var msg = 'The lower limit of ' + lower.toString() + ' cannot be greater than the upper limit of ' + session.userData.upperLimit.toString() + '.';
+        // session.send(msg);
         session.say(msg, msg);
     } else if (upper < lower) {
         let msg = 'The upper limit of ' + upper.toString() + ' cannot be greater than the lower limit of ' + session.userData.lowerLimit.toString() + '.';
@@ -98,8 +102,8 @@ function setLimitRange(session, lower, upper) {
     } else {
         session.userData.lowerLimit = lower;
         session.userData.upperLimit = upper;
-        let msg = 'The range is now between ' + lower.toString() + ' and ' + upper.toString() + '.';
-        session.send(msg);
+        var msg = 'The range is now between ' + lower.toString() + ' and ' + upper.toString() + '.';
+        // session.send(msg);
         session.say(msg, msg);
     }
 }
