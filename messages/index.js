@@ -46,7 +46,7 @@ intents.matches('RandomNumber', [
             console.log('ranges:', ranges);
             setLimits(session, ranges);
         }
-        var val = Math.trunc(Math.random() * session.userData.upperLimit) + session.userData.lowerLimit;
+        var val = Math.trunc(Math.random() * (session.userData.upperLimit - session.userData.lowerLimit + 1) + session.userData.lowerLimit;
         session.userData.randomNumber = val;
         next();
     },
