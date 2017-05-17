@@ -33,11 +33,8 @@ intents
     .onBegin(function (session, args, next) {
         session.userData.lowerLimit = 1;
         session.userData.upperLimit = 100;
-        // Only say the following message if there is no other Intent
-        // var msg = 'I can give you a random number between ' + session.userData.lowerLimit.toString() + ' and ' + session.userData.upperLimit.toString()+ '.';
-        // session.send(msg);
-        // session.say(msg, msg);
-        //next();
+
+        next(); // call next() to get the bot started
     });
 
 intents.matches('RandomNumber', [
